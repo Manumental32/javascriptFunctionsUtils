@@ -1,0 +1,10 @@
+//prevengo la recarga de la página sin guardar los cambios
+
+window.onbeforeunload = confirmaSalida;  
+
+function confirmaSalida()   {
+  // condicional opcional si hay cambios
+  if(cchange > 0){ 
+		return "Vas a abandonar esta pagina. Si has hecho algun cambio sin grabar vas a perder todos los datos."; 
+	} 
+}
