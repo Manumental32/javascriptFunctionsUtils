@@ -1,0 +1,34 @@
+//notificación flotante con mensaje y statusClass
+function objectResponse (status, message) {
+	function showResponse () {
+		var response = $('<div class="response' + ' ' + status + '"></div>');
+
+		$(response)
+			.append('<div class="response-left"></div>')
+			.append('<div class="response-right"> <p>' + message + '</p> <input type="button"> </div>')
+			.appendTo('body')
+			.show('slide', { direction: 'up' })
+			.find('input[type="button"]')
+			.click(function () {
+				$(response).fadeOut('fast', function () {
+					$(this).remove();
+				});
+			});
+
+		setTimeout(function () {
+			$(response).fadeOut('fast', function () {
+				$(this).remove();
+			});
+		}, 5000);
+	}
+
+	if ($('.response').length > 0) {
+		$('.response').fadeOut('fast', function () {
+			$(this).remove();
+
+			showResponse ();
+		});
+	} else {
+		showResponse ();
+	};
+}
