@@ -1,0 +1,34 @@
+	//validar form antes de hacer el submit
+	//pasar los names de los inputs encomillados separados con ,
+	function validateFormWithPsw(){
+		var r = 0;
+
+		for (var i = 0; i < arguments.length; i++) {
+			var check;
+			//Checking the email format.
+			if($(arguments[i]).attr('name').contains('mail')){
+				check = validateEmail($(arguments[i]).val());
+			} else {
+				check = $(arguments[i]).val().length > 0;	
+			}
+
+			if (check) {
+				$(arguments[i]).css("background", "");
+				r++;
+			} else {
+				$(arguments[i]).css("background", "rgba(235, 20, 0, 0.5)");
+			}
+		}
+
+		if (r === arguments.length) {
+			var pswIn = $("[name*='psw']");
+			if(pswIn[0].value == pswIn[1].value){
+				return true;
+			} else {
+				alert('Las contraseñas ingresadas deben ser iguales.');
+				return false;
+			}
+		} else {
+			return false;
+		}	
+	}
