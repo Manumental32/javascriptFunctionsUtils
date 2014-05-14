@@ -1,0 +1,44 @@
+//funciones varias utiles
+
+function centrar() { 
+	iz=(screen.width-document.body.clientWidth) / 2; 
+	al=(screen.height-document.body.clientHeight) / 2; 
+	moveTo(iz,al); 
+}
+
+function replaceAll( text, busca, reemplaza ){
+		while (text.toString().indexOf(busca) != -1){
+			text = text.toString().replace(busca,reemplaza);
+		}
+		return text;
+}
+
+function setConfirm (element, value) {
+	$(element).click(function () {
+		return confirm(value);
+	})
+}
+
+function validarCuit(cuit) {
+
+    if(cuit.length != 11) {
+        return false;
+    }
+
+    var acumulado   = 0;
+    var digitos     = cuit.split("");
+    var digito      = digitos.pop();
+
+    for(var i = 0; i < digitos.length; i++) {
+        acumulado += digitos[9 - i] * (2 + (i % 6));
+    }
+
+    var verif = 11 - (acumulado % 11);
+    if(verif == 11) {
+        verif = 0;
+    } else if(verif == 10) {
+        verif = 9;
+    }
+
+    return digito == verif;
+}
