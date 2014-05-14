@@ -1,0 +1,29 @@
+function photoPreview(elementFile, elementPreview) {
+	if (elementFile.files && elementFile.files[0]) {
+		var objectReader = new FileReader ();
+
+		objectReader.onload = function (p) {
+			$(elementPreview).attr('src', p.target.result);
+		}
+
+		objectReader.readAsDataURL(elementFile.files[0]);
+	};
+} 
+
+//pasar los ids tipo javascript
+function draganddrop(idUploaderContent, idUploaderSelectable){
+	
+	var uploadItemsContent = $('#' + idUploaderContent)[0];
+	
+	uploadItemsContent.ondragover = function (e) {
+		e.preventDefault();
+		e.stopPropagation();
+	}
+
+	uploadItemsContent.ondrop = function (e) {
+		e.preventDefault();
+		
+		var files = e.target.files || e.dataTransfer.files;
+		document.getElementById(idUploaderSelectable).files = files;
+	}
+}
